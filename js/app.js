@@ -15,7 +15,7 @@
             ballVelocity = 400; 
 
             paddleOne = createPaddle(0, game.world.centerY);
-            paddleTwo = createPaddle(game.world.width - 16, game.world.centerY);
+            paddleTwo = createPaddle(game.world.width - 8, game.world.centerY);
             ball = createBall(game.world.centerX, game.world.centerY); 
 
             game.input.onDown.add(launchBall, this);  
@@ -32,6 +32,10 @@
                 console.log('Player 1 Scores'); 
             }
 
+            paddleTwo.body.velocity.setTo(ball.body.velocity.y);
+            paddleTwo.body.velocity.x = 0; 
+            paddleTwo.body.maxVelocity.y = 250;  
+
         }
 
         function createPaddle(x,y) {
@@ -40,6 +44,7 @@
             game.physics.arcade.enable(paddle); 
             paddle.body.collideWorldBounds = true; 
             paddle.body.immovable = true; 
+            paddle.scale.setTo(0.5,0.5); 
 
             return paddle; 
         }
