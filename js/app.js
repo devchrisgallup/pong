@@ -2,6 +2,10 @@
         var paddleOne; 
         var paddleTwo; 
         var ball; 
+        var scoreOne; 
+        var scoreTwo; 
+        var one = 0; 
+        var two = 0; 
         var ballLaunched; 
         var ballVelocity; 
 
@@ -12,29 +16,35 @@
 
         function create() {
             ballLaunched = false; 
-            ballVelocity = 400; 
+            ballVelocity = 600; 
 
             paddleOne = createPaddle(0, game.world.centerY);
             paddleTwo = createPaddle(game.world.width - 8, game.world.centerY);
             ball = createBall(game.world.centerX, game.world.centerY); 
 
             game.input.onDown.add(launchBall, this);  
+
+            scoreOne = game.add.text((this.game.width / 2) - 150,this.game.height - 35,"", {font: '32px Arial', fill:  '#fff'});
+            scoreTwo = game.add.text(this.game.width / 2,this.game.height - 35,"", {font: '32px Arial', fill:  '#fff'});
         }
 
         function update() {
+            scoreOne.text = "One " + one; 
+            scoreTwo.text = "Two " + two; 
+            
             controlPaddle(paddleOne, game.input.y); 
             game.physics.arcade.collide(paddleOne, ball); 
             game.physics.arcade.collide(paddleTwo, ball); 
 
             if (ball.body.blocked.left) {
-                console.log('Player 2 Scores!');
+                two++; 
             } else if (ball.body.blocked.right) {
-                console.log('Player 1 Scores'); 
+                one++; 
             }
 
             paddleTwo.body.velocity.setTo(ball.body.velocity.y);
             paddleTwo.body.velocity.x = 0; 
-            paddleTwo.body.maxVelocity.y = 250;  
+            paddleTwo.body.maxVelocity.y = 105;  
 
         }
 
