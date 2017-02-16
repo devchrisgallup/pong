@@ -37,20 +37,22 @@ function update() {
     game.physics.arcade.collide(paddleOne, ball); 
     game.physics.arcade.collide(paddleTwo, ball); 
 
+
     if (ball.body.blocked.left) {
         two++; 
     } else if (ball.body.blocked.right) {
         one++; 
     }
 
-    if (aiFlag) {
+
+    if (ball.x < this.game.width / 2) {
         paddleTwo.body.velocity.setTo(ball.body.velocity.y);
         paddleTwo.body.velocity.x = 0; 
-        paddleTwo.body.maxVelocity.y = 105;  
+        paddleTwo.body.maxVelocity.y = 105; 
     } else {
         paddleTwo.body.velocity.setTo(ball.body.velocity.y);
         paddleTwo.body.velocity.x = 0; 
-        paddleTwo.body.maxVelocity.y = 200;
+        paddleTwo.body.maxVelocity.y = 350;
     }
 
 }
@@ -99,17 +101,3 @@ function launchBall() {
         ballLaunched = true;
     }
 }
-
-// AI Paddle Random Speed
-var aiSpeed = setInterval(function() {
-    if (aiFlag) {
-        aiFlag = false; 
-    } else {
-        aiFlag = true; 
-    }
- }, 5000);
-
-
-
-
-    
