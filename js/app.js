@@ -17,7 +17,7 @@ function preload() {
 
 function create() {
     ballLaunched = false; 
-    ballVelocity = 600; 
+    ballVelocity = 800; 
 
     paddleOne = createPaddle(0, game.world.centerY);
     paddleTwo = createPaddle(game.world.width - 8, game.world.centerY);
@@ -50,9 +50,11 @@ function update() {
         paddleTwo.body.velocity.x = 0; 
         paddleTwo.body.maxVelocity.y = 105; 
     } else {
-        paddleTwo.body.velocity.setTo(ball.body.velocity.y);
-        paddleTwo.body.velocity.x = 0; 
-        paddleTwo.body.maxVelocity.y = 350;
+        setTimeout(function () {
+            paddleTwo.body.velocity.setTo(ball.body.velocity.y);
+            paddleTwo.body.velocity.x = 0; 
+            paddleTwo.body.maxVelocity.y = 150;
+        })
     }
 
 }
