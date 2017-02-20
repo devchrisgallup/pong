@@ -44,17 +44,25 @@ function update() {
         one++; 
     }
 
-
+    // Paddle Two AI
     if (ball.x < this.game.width / 2) {
         paddleTwo.body.velocity.setTo(ball.body.velocity.y);
         paddleTwo.body.velocity.x = 0; 
-        paddleTwo.body.maxVelocity.y = 105; 
+        paddleTwo.body.maxVelocity.y = 400; 
     } else {
-        setTimeout(function () {
-            paddleTwo.body.velocity.setTo(ball.body.velocity.y);
-            paddleTwo.body.velocity.x = 0; 
-            paddleTwo.body.maxVelocity.y = 150;
-        })
+        paddleTwo.body.velocity.setTo(ball.body.velocity.y);
+        paddleTwo.body.velocity.x = 0; 
+        paddleTwo.body.maxVelocity.y = 250;
+    }
+
+    if (ball.y < this.game.height / 2) {
+        paddleTwo.body.velocity.setTo(ball.body.velocity.y);
+        paddleTwo.body.velocity.x = 0; 
+        paddleTwo.body.maxVelocity.y = 400; 
+    } else {
+        paddleTwo.body.velocity.setTo(ball.body.velocity.y);
+        paddleTwo.body.velocity.x = 0; 
+        paddleTwo.body.maxVelocity.y = 250;
     }
 
 }
